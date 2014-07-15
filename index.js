@@ -1,9 +1,9 @@
 'use strict';
 var gutil = require('gulp-util');
 var through = require('through2');
-var juice = require('juice2');
+var juice = require('juice');
 
-module.exports = function(opt){
+module.exports = function (opt) {
     return through.obj(function (file, enc, cb) {
         opt = opt || {};
 
@@ -16,7 +16,8 @@ module.exports = function(opt){
             return cb();
         }
 
-        juice.juiceContent(file.contents, opt, function(err, html) {
+        juice.juiceContent(file.contents, opt, function (err, html) {
+
             if (err) {
                 this.emit('error', new gutil.PluginError('gulp-inline-css', err));
             }
